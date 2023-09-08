@@ -1,0 +1,37 @@
+<div>
+  <p-progressSpinner *ngIf="indicator$ | async"></p-progressSpinner>
+
+  <div class="list">
+    <p-card
+      *ngFor="let post of posts$ | async"
+      header="{{ post.title }}"
+      (click)="goToDetails(post.id)"
+    >
+      <p>{{ post.body }}</p>
+    </p-card>
+  </div>
+
+  <div class="footer">
+    <p-paginator
+      #paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="0"
+      [rows]="5"
+      [totalRecords]="100"
+      [pageLinkSize]="5"
+      [showPageLinks]="!(isSmallScreen | async)?.matches"
+      [showJumpToPageDropdown]="!!(isSmallScreen | async)?.matches"
+      [showFirstLastIcon]="!(isSmallScreen | async)?.matches"
+    ></p-paginator>
+
+    <div class="dropdown">
+      <p-dropdown
+        [options]="sortList"
+        [(ngModel)]="selectedSortItem"
+        placeholder="Sort By"
+        optionLabel="name"
+        (onChange)="onSortChange($event)"
+      ></p-dropdown>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<p-card *ngIf="post$ | async as post" header="{{ post.title }}">
+  <p>{{ post.body }}</p>
+</p-card>
+
+<p-progressSpinner *ngIf="indicator$ | async"></p-progressSpinner>
