@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   pageChanged,
+  postAdded,
   postsLoaded,
   sorted,
   startIndicator,
@@ -53,6 +54,12 @@ export const postReducer = createReducer(
     return {
       ...state,
       indicator: payload.state,
+    };
+  }),
+  on(postAdded, (state, { post }) => {
+    return {
+      ...state,
+      posts: [...state.posts, post],
     };
   }),
 );

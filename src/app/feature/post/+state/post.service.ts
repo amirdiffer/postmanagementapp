@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IPostModel } from '../../../model/post.model';
+import { IPostAddModel, IPostModel } from '../../../model/post.model';
 import { environment } from 'environment/environment';
 import { SortModel } from '../../../model/post-sort.model';
 
@@ -24,5 +24,9 @@ export class PostService {
     } else {
       return this.httpClient.get<IPostModel[]>(url);
     }
+  }
+
+  addPost(post: IPostAddModel): Observable<any> {
+    return this.httpClient.post(`${environment.API_URL}posts`, post);
   }
 }

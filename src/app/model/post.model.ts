@@ -4,3 +4,5 @@ export interface IPostModel {
   title: string;
   body: string;
 }
+
+export interface IPostAddModel extends Partial<IPostModel> {}

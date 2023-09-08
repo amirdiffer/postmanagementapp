@@ -7,17 +7,25 @@ import {
   selectPost,
   selectPosts,
 } from 'feature/post/+state/post.selector';
-import {changePage, getPosts, sort, startIndicator} from 'feature/post/+state/post.action';
+import {
+  addPost,
+  changePage,
+  getPosts,
+  sort,
+  startIndicator,
+} from 'feature/post/+state/post.action';
 import { SortModel } from '../../../model/post-sort.model';
+import { IPostAddModel } from '../../../model/post.model';
 
 @Injectable({ providedIn: 'root' })
 export class PostFacade {
   posts$ = this.store.select(selectPosts);
   loaded$ = this.store.select(selectLoaded);
-  post$ = (id: number) => this.store.select(selectPost(id));
   indicator$ = this.store.select(selectIndicator);
 
   constructor(private store: Store<PostState>) {}
+
+  post$ = (id: number) => this.store.select(selectPost(id));
 
   getPosts() {
     return this.store.dispatch(getPosts());
@@ -33,5 +41,9 @@ export class PostFacade {
 
   startIndicator(state: boolean) {
     this.store.dispatch(startIndicator({ state }));
+  }
+
+  addPost(post: IPostAddModel) {
+    this.store.dispatch(addPost({ post }));
   }
 }

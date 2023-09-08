@@ -1,8 +1,7 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { PostFacade } from 'feature/post/+state/post.facade';
 import { Subscription } from 'rxjs';
 import { SortOption } from '../../../model/post-sort.model';
-import { Paginator } from 'primeng/paginator';
 import { Router } from '@angular/router';
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 
@@ -12,8 +11,6 @@ import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnDestroy {
-  @ViewChild('paginator') paginator!: Paginator;
-
   posts$ = this.postFacade.posts$;
   indicator$ = this.postFacade.indicator$;
   subscriptions = new Subscription();

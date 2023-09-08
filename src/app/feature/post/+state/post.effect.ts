@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, withLatestFrom } from 'rxjs';
+import { EMPTY, tap, withLatestFrom } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PostService } from './post.service';
-import { changePage, getPosts, sort } from 'feature/post/+state/post.action';
+import {
+  addPost,
+  changePage,
+  getPosts,
+  sort,
+} from 'feature/post/+state/post.action';
 import { PostState } from 'feature/post/+state/post.reducer';
 import { Store } from '@ngrx/store';
 import { selectPage } from 'feature/post/+state/post.selector';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class PostEffects {
@@ -59,9 +66,34 @@ export class PostEffects {
     ),
   );
 
+  addPost$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addPost),
+      exhaustMap(({ post }) => {
+        return this.postService.addPost(post).pipe(
+          map((post) => ({
+            type: '[POST] post added successfully',
+            post,
+          })),
+          tap(() => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Post added successfully',
+            });
+            this.router.navigate(['/']);
+          }),
+          catchError(() => EMPTY),
+        );
+      }),
+    ),
+  );
+
   constructor(
     private actions$: Actions,
     private postService: PostService,
     private store$: Store<PostState>,
+    private messageService: MessageService,
+    private router: Router,
   ) {}
 }

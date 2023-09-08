@@ -13,9 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { PaginatorModule } from 'primeng/paginator';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AddPostComponent } from './add-post/add-post.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import {MessageService} from "primeng/api";
+import {StyleClassModule} from "primeng/styleclass";
 
 @NgModule({
-  declarations: [PostsComponent, PostDetailComponent],
+  declarations: [PostsComponent, PostDetailComponent, AddPostComponent],
   imports: [
     CommonModule,
     PostRoutingModule,
@@ -25,7 +34,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     EffectsModule.forFeature(PostEffects),
     PaginatorModule,
     ProgressSpinnerModule,
+    InputTextModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    InputTextareaModule,
+    ToastModule,
+    MessagesModule,
+    StyleClassModule,
   ],
-  providers: [PostService],
+  providers: [PostService, MessageService],
 })
 export class PostModule {}

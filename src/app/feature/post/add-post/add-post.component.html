@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="addPost()">
+  <div class="title">
+    <span>New Post</span>
+  </div>
+
+  <div>
+    <input pInputText placeholder="Title" formControlName="title" />
+  </div>
+
+  <div>
+    <textarea
+      required
+      pInputTextarea
+      placeholder="Body"
+      formControlName="body"
+    ></textarea>
+  </div>
+
+  <div class="button">
+    <button pButton type="submit">Submit</button>
+  </div>
+</form>
+
+<p-toast></p-toast>

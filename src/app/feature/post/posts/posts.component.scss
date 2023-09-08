@@ -3,11 +3,11 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 
 p-progressSpinner {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -46,8 +46,10 @@ p-progressSpinner {
   background: white;
   display: flex;
   justify-content: space-evenly;
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
 
   .p-paginator {
     padding: 0;

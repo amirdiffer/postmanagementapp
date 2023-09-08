@@ -1,0 +1,31 @@
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
+    margin: 10px;
+  }
+
+  input {
+    margin: 5px;
+  }
+
+  textarea {
+    min-width: 209px;
+    margin-left: 5px;
+  }
+
+  .button {
+    text-align: center;
+    margin: 10px;
+
+    .p-button {
+      padding: 8px;
+    }
+  }
+}

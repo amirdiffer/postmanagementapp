@@ -8,15 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './http-interceptor.service';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ButtonModule } from 'primeng/button';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ToolbarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
+    ButtonModule,
+    ToolbarModule,
   ],
   providers: [
     {
